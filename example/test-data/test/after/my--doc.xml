@@ -1,0 +1,4 @@
+<doc>
+  <foo>baz</foo>
+  <updateDatetime>This value will be ignored during comparison</updateDatetime>
+</doc>

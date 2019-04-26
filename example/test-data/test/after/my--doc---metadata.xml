@@ -1,0 +1,16 @@
+<metadata>
+  <permissions>
+    <permission>
+	   <role-name>app-user</role-name>
+		<capability>read</capability>
+	 </permission>
+    <permission>
+	   <role-name>app-user</role-name>
+		<capability>insert</capability>
+	 </permission>
+  </permissions>
+  <collections>
+    <collection>example</collection>
+    <collection>favorites</collection>
+  </collections>
+</metadata>

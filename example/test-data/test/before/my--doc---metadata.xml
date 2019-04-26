@@ -1,0 +1,11 @@
+<metadata>
+  <permissions>
+    <permission>
+	   <role-name>app-user</role-name>
+		<capability>read</capability>
+	 </permission>
+  </permissions>
+  <collections>
+    <collection>example</collection>
+  </collections>
+</metadata>
