@@ -214,16 +214,15 @@ declare function dw:construct-drop-templates(
   for $element-to-drop in $elements-to-drop
   let $ns := fn:namespace-uri-from-QName($element-to-drop)
   let $local-name := fn:local-name-from-QName($element-to-drop)
-  return (
-    element {xs:QName("xsl:template")} {
+  return
+    element xsl:template {
       if ($ns ne "")
       then (
-        attribute {"xmlns:ns"} {$ns},
-        attribute {"match"} {"ns:" || $local-name}
+        attribute xmlns:ns {$ns},
+        attribute match {"ns:" || $local-name}
       )
-      else attribute {"match"} {$local-name}
+      else attribute match {$local-name}
     }
-  )
 };
 
 (:~
