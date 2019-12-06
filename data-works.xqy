@@ -233,28 +233,30 @@ declare function dw:construct-drop-templates(
  : @return A copy of $node without $elements-to-drop and without any whitespace
  :)
 declare function dw:strip-uncomparables(
-  $node as node(),
+  $nodes as node()*,
   $elements-to-drop as xs:QName*
-) as document-node()
+) as document-node()*
 {
-  xdmp:xslt-eval(
-    <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-      <xsl:output method="xml" encoding="UTF-8" indent="no"/>
-      <xsl:strip-space elements="*"/>
-      
-      <!-- identity template -->
-      <xsl:template match="@*|node()">
-        <xsl:copy>
+  for $node in $nodes
+  return
+    xdmp:xslt-eval(
+      <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output method="xml" encoding="UTF-8" indent="no"/>
+        <xsl:strip-space elements="*"/>
+
+        <!-- identity template -->
+        <xsl:template match="@*|node()">
+          <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
-        </xsl:copy>
-      </xsl:template>
+          </xsl:copy>
+        </xsl:template>
 
-      <!-- additional elements to drop -->
-      {dw:construct-drop-templates($elements-to-drop)}
+        <!-- additional elements to drop -->
+        {dw:construct-drop-templates($elements-to-drop)}
 
-    </xsl:stylesheet>
-  ,
-  $node)
+      </xsl:stylesheet>,
+      $node
+    )
 };
 
 (:~
